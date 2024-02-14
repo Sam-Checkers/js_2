@@ -12,11 +12,18 @@ let person3 = {
     }]
 }
 
-favFood = (Key) => {
-    return person3[Key];
-}
-
-console.log(favFood('ice_cream'))
+favFood = (dict, key) => {
+    if (Array.isArray(dict[key])) {
+      if (typeof dict[key][0] === 'object') {
+        return Object.values(dict[key][0]).join('\n');
+      } else {
+        return dict[key].join('\n');
+      }
+    } else {
+      return dict[key];
+    }
+  }
+console.log(favFood(person3,'shakes'))
 
 function Person(name, age) {
     this.name = name;
@@ -55,5 +62,7 @@ isGreater = (string) => {
 
 }
 
-isGreater('Hello')
-isGreater('Helloooooooo')
+isGreater("Hello").then(response => {
+    console.log(response);
+  }).catch(error => {
+    console.log(error);})
